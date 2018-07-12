@@ -459,16 +459,16 @@ function installMongo()
     fi
     logToFile "|--> Install PHP Extension:Mongo..."
     cd ${BASEDIR} 
-    if [ ! -f mongo-1.6.14.tgz ]; then
-        if [ -f ${SOURCEDIR}mongo-1.6.14.tgz ]; then
-            cp ${SOURCEDIR}mongo-1.6.14.tgz . >> ${LOGFILE} 2>&1
+    if [ ! -f mongodb-1.5.1.tgz ]; then
+        if [ -f ${SOURCEDIR}mongodb-1.5.1.tgz ]; then
+            cp ${SOURCEDIR}mongodb-1.5.1.tgz . >> ${LOGFILE} 2>&1
         else
-            wget -c http://pecl.php.net/get/mongo-1.6.14.tgz >> ${LOGFILE} 2>&1
+            wget -c http://pecl.php.net/get/mongodb-1.5.1.tgz >> ${LOGFILE} 2>&1
         fi
-        checkRetval 'download mongo-1.6.14.tgz'
+        checkRetval 'download mongodb-1.5.1.tgz'
     fi
-    tar zxf mongo-1.6.14.tgz >> ${LOGFILE} 2>&1
-    cd mongo-1.6.14/
+    tar zxf mongodb-1.5.1.tgz >> ${LOGFILE} 2>&1
+    cd mongodb-1.5.1/
     /usr/local/php-${VERSION}/bin/phpize
     ./configure -with-php-config=/usr/local/php-${VERSION}/bin/php-config
     make -j 8 && make install
