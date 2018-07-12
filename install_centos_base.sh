@@ -5,7 +5,7 @@ mkdir -p /data/
 cd /data/
 
 # centos初始化一些环境，安装一些基础的类库等
-yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-dev;
+yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-devel;
 yum -y install libtool automake autoconf install gcc-c++;
 yum -y install libxml2-devel zlib-devel bzip2 bzip2-devel;
 yum -y install ncurses-devel readline-devel;
