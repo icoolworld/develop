@@ -590,7 +590,7 @@ function installOpenssl()
     cd ${BASEDIR}php-${VERSION}/ext/openssl
     [ ! -f config.m4 ] && cp config0.m4 config.m4 
     /usr/local/php-${VERSION}/bin/phpize
-    ./configure -with-php-config=/usr/local/php-${VERSION}/bin/php-config
+    ./configure --with-openssl --with-php-config=/usr/local/php-${VERSION}/bin/php-config
     make -j 8 && make install
     checkRetval 'install php-extension openssl successfully'
     echo '[openssl]
