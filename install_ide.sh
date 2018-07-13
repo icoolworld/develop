@@ -60,6 +60,9 @@ cd ../
 git clone https://github.com/icoolworld/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
+# git log 乱码问题
+echo export LESSCHARSET=utf-8 >> /etc/bashrc
+
 #清理源文件
 rm -rf /data/
 
