@@ -473,8 +473,8 @@ function installMongo()
     ./configure -with-php-config=/usr/local/php-${VERSION}/bin/php-config
     make -j 8 && make install
     checkRetval 'install php-extension Mongo successfully'
-    echo '[mongo]
-extension=mongo.so
+    echo '[mongodb]
+extension=mongodb.so
 ' >> /usr/local/php-${VERSION}/etc/php.ini
     logToFile "|--> End Install Mongo..."
 }
@@ -677,9 +677,8 @@ function installBcmath()
     cd ${BASEDIR}php-${VERSION}/ext/bcmath
     /usr/local/php-${VERSION}/bin/phpize
     ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config
-    cd ${BASEDIR}
     make -j 8 && make install
-        echo '[bcmath]
+    echo '[bcmath]
 extension=bcmath.so
 ' >> /usr/local/php-${VERSION}/etc/php.ini
     logToFile "|--> End Install bcmath..."
@@ -694,9 +693,17 @@ function installAmqp()
     cd rabbitmq-c-0.8.0
     #./configure --prefix=/usr/local/rabbitmq-c-0.8.0
     ./configure
-    make && make install
-    pecl install channel://pecl.php.net/amqp-1.9.3
-        echo '[amqp]
+    make -j 8 && make install
+    #pecl channel-update pecl.php.net
+    #pecl install channel://pecl.php.net/amqp-1.9.3
+    wget http://pecl.php.net/get/amqp-1.9.3.tgz
+    tar zxf amqp-1.9.3.tgz 
+    cd amqp-1.9.3
+    /usr/local/php-${VERSION}/bin/phpize
+   ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config  --with-amqp --with-librabbitmq-dir=/usr/local
+   make -j 8 && make install
+    
+    echo '[amqp]
 extension=amqp.so
 ' >> /usr/local/php-${VERSION}/etc/php.ini
     logToFile "|--> End Install amqp..."
@@ -717,7 +724,8 @@ function installPhpcsfixer()
 {
     cd ${BASEDIR}
     wget https://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer
-    chmod a+x php-cs-fixer mv php-cs-fixer /usr/bin/php-cs-fixer
+    chmod a+x php-cs-fixer
+    mv php-cs-fixer /usr/bin/php-cs-fixer
 }
 
 function installPhpctags()
