@@ -209,7 +209,7 @@ function installPhpFromSource()
 
     tar zxf php-${VERSION}.tar.gz >> ${LOGFILE} 2>&1
     cd php-${VERSION}
-    ./configure --prefix=/usr/local/php-${VERSION} --with-config-file-path=/usr/local/php-${VERSION}/etc --enable-fpm --with-openssl --with-pear=/usr/share/php --enable-ftp --enable-zip --with-bz2 --with-zlib --with-libxml-dir=/usr --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-gettext --with-iconv --enable-mbstring --disable-ipv6 --enable-inline-optimization  --enable-static --enable-sockets --enable-soap --with-mhash --with-pcre-regex --with-mcrypt --with-curl --with-mysql --with-mysqli --with-pdo-mysql 
+    ./configure --prefix=/usr/local/php-${VERSION} --with-config-file-path=/usr/local/php-${VERSION}/etc --enable-bcmath --enable-fpm --with-openssl --with-pear=/usr/share/php --enable-ftp --enable-zip --with-bz2 --with-zlib --with-libxml-dir=/usr --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-gettext --with-iconv --enable-mbstring --disable-ipv6 --enable-inline-optimization  --enable-static --enable-sockets --enable-soap --with-mhash --with-pcre-regex --with-mcrypt --with-curl --with-mysql --with-mysqli --with-pdo-mysql 
     checkRetval "./configure"
     make -j 8
     [ $? -eq 0 ] && make install
@@ -754,7 +754,8 @@ function main()
     installComposer
     installPcntl
     installSwoole
-    installOpenssl
+    #alreay configure
+    #installOpenssl
     installPgsql
     installApcu
     installMongo
@@ -767,7 +768,8 @@ function main()
         installPhpcsfixer
         installPhpctags
     fi
-    installBcmath
+    #--enable-bcmath
+    #installBcmath
     installAmqp
     
     service php-fpm start
