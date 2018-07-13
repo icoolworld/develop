@@ -777,6 +777,8 @@ function main()
     #lsof -i:9000 | wc -l
     mv ${BASEDIR}php-${VERSION}.tar.gz /
     rm -rf ${BASEDIR}
+    echo 'export PATH=/usr/local/php/bin/:/usr/local/php/sbin/:$PATH' >> /etc/profile
+    source /etc/profile
     logToFile  "++ End Install PHP ++"
 }
 
