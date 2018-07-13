@@ -34,7 +34,7 @@ make
 make install # may require extra privileges depending on where to install
 
 # ctags --tag-relative=yes -R -f /dev/shm/ctags --fields=+aimlS --languages=php --PHP-kinds=+cdfint-av --exclude=composer.phar --exclude=*Test.php --exclude=*phpunit* --exclude="\.git"
-# phpctags --memory=1  -R
+# phpctags --memory=1G  -R
 cd ../
 
 
