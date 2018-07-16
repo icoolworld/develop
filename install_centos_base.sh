@@ -87,11 +87,13 @@ yum -y install nc
 yum -y install lsof
 yum -y install strace ltrace
 # install dig
-yum install bind-utils
+yum -y install bind-utils
 yum -y install gdb
 # install sar
 yum -y install sysstat && sar -o 2 3
 yum -y install telnet
+# netstat
+yum -y install net-tools
 
 # install sshd service
 yum install -y openssh-server
