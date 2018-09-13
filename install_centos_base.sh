@@ -102,7 +102,15 @@ systemctl start sshd
 systemctl enable sshd     
 echo root:123456|chpasswd
 
-cd / && rm -rf /data
-
 # fix git status chinese path unreadable
 git config --global core.quotepath false
+
+# autojump command
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py
+echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> /etc/bashrc
+cd ../
+rm -rf autojump
+
+cd / && rm -rf /data
