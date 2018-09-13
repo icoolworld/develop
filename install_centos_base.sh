@@ -56,6 +56,7 @@ ln -s /usr/local/vim8/bin/vim /usr/bin/vim
 ln -s /usr/bin/vim /usr/bin/vi
 
 echo "export TERM=xterm-256color" >> /etc/bashrc
+echo "export LANG=en_US.UTF-8" >> /etc/bashrc
 
 
 #./configure --prefix=/usr/local/vim8 \
