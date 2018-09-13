@@ -128,4 +128,6 @@ yum-config-manager \
     https://download.docker.com/linux/centos/docker-ce.repo
 yum install -y docker-ce
 
+yum install -y tree
+
 cd / && rm -rf /data
