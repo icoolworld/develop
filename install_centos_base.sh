@@ -84,6 +84,7 @@ yum -y install the_silver_searcher
 # ack
 yum -y install ack
 
+# install nc
 yum -y install nc
 yum -y install lsof
 yum -y install strace ltrace
