@@ -103,3 +103,6 @@ systemctl enable sshd
 echo root:123456|chpasswd
 
 cd / && rm -rf /data
+
+# fix git status chinese path unreadable
+git config --global core.quotepath false
