@@ -107,7 +107,7 @@ echo root:123456|chpasswd
 git config --global core.quotepath false
 
 # autojump command
-git clone git://github.com/wting/autojump.git
+cd /data/ && git clone git://github.com/wting/autojump.git
 cd autojump && ./install.py
 echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 cd ../ && rm -rf autojump
