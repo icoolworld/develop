@@ -108,11 +108,9 @@ git config --global core.quotepath false
 
 # autojump command
 git clone git://github.com/wting/autojump.git
-cd autojump
-./install.py
-echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> /etc/bashrc
-cd ../
-rm -rf autojump
+cd autojump && ./install.py
+echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
+cd ../ && rm -rf autojump
 
 # fix sshd server
 ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ""
