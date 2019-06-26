@@ -107,8 +107,10 @@ echo root:123456|chpasswd
 git config --global core.quotepath false
 
 # autojump command
-cd /data/ && git clone git://github.com/wting/autojump.git
-cd autojump && ./install.py
+cd /data/
+git clone https://github.com/wting/autojump.git
+cd autojump
+./install.py
 echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 cd ../ && rm -rf autojump
 
@@ -126,6 +128,11 @@ yum-config-manager \
     https://download.docker.com/linux/centos/docker-ce.repo
 yum install -y docker-ce
 
+curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+chmod +x /usr/bin/docker-compose
+
 yum install -y tree
+yum -y install iotop
+yum -y install iftop
 
 cd / && rm -rf /data
