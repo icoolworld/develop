@@ -2,6 +2,7 @@ FROM centos:latest
 MAINTAINER coolbaby
 ADD . /build/
 WORKDIR /build/
+ENV SHELL /bin/bash
 RUN chmod a+x /build/*.sh
 RUN /build/install_centos_base.sh
 RUN /build/install_php7.sh
