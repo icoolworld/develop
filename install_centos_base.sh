@@ -143,4 +143,33 @@ for file in /etc/bash_completion.d/* ; do
 done
 EOT
 
+cat <<EOT >>  ~/.gitconfig
+[alias]
+   # Shortening aliases
+   co = checkout
+   cob = checkout -b
+   f = fetch -p
+   c = commit
+   p = push
+   br = branch -r
+   ba = branch -a
+   bd = branch -d
+   bD = branch -D
+   dc = diff --cached
+
+   # Feature improving aliases
+   #st = status -sb
+   st = status
+   a = add -A
+
+   # Complex aliases
+   plog = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
+   tlog = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+   rank = shortlog -sn --no-merges
+   bdm = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+EOT
+     
+     
+
 cd / && rm -rf /data
