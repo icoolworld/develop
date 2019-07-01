@@ -75,7 +75,7 @@ echo "export LANG=en_US.UTF-8" >> /etc/bashrc
 #
 
 ## install develope tools
-#yum group install "Development Tools"
+yum group install "Development Tools"
 
 # ag..
 yum -y install epel-release.noarch
@@ -134,5 +134,6 @@ chmod +x /usr/bin/docker-compose
 yum install -y tree
 yum -y install iotop
 yum -y install iftop
+yum -y install bash-completion
 
 cd / && rm -rf /data
