@@ -136,4 +136,11 @@ yum -y install iotop
 yum -y install iftop
 yum -y install bash-completion
 
+# git autocomplete
+cat <<EOT >>  ~/.bashrc
+for file in /etc/bash_completion.d/* ; do
+    source "$file"
+done
+EOT
+
 cd / && rm -rf /data
