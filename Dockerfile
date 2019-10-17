@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos7
 MAINTAINER coolbaby
 ADD . /build/
 WORKDIR /build/
