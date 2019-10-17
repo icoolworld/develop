@@ -1,8 +1,11 @@
 #!/bin/bash
 
-#进入源码目录
 mkdir -p /data/
 cd /data/
+
+yum -y install epel-release
+#yum update
+yum -y install bash zsh
 
 # centos初始化一些环境，安装一些基础的类库等
 yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-devel;
@@ -58,6 +61,9 @@ ln -s /usr/bin/vim /usr/bin/vi
 echo "export TERM=xterm-256color" >> /etc/bashrc
 echo "export LANG=en_US.UTF-8" >> /etc/bashrc
 
+echo "export TERM=xterm-256color" >> /etc/zshrc
+echo "export LANG=en_US.UTF-8" >> /etc/zshrc
+
 
 #./configure --prefix=/usr/local/vim8 \
 #--with-features=huge \
@@ -78,7 +84,6 @@ echo "export LANG=en_US.UTF-8" >> /etc/bashrc
 yum group install "Development Tools"
 
 # ag..
-yum -y install epel-release.noarch
 yum -y install the_silver_searcher
 
 # ack
@@ -100,7 +105,7 @@ yum -y install net-tools
 # install sshd service
 yum install -y openssh-server
 systemctl start sshd
-systemctl enable sshd     
+systemctl enable sshd
 echo root:123456|chpasswd
 
 # fix git status chinese path unreadable
@@ -111,7 +116,8 @@ cd /data/
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/bashrc
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/zshrc
 cd ../ && rm -rf autojump
 
 # fix sshd server
@@ -134,6 +140,7 @@ chmod +x /usr/bin/docker-compose
 yum install -y tree
 yum -y install iotop
 yum -y install iftop
+yum -y install which
 yum -y install bash-completion
 
 # git autocomplete
@@ -169,7 +176,30 @@ cat <<EOT >>  ~/.gitconfig
    rank = shortlog -sn --no-merges
    bdm = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
 EOT
-     
-     
+
+yum install -y dnf
+
+# install fd
+cd /data
+wget https://github.com/sharkdp/fd/releases/download/v7.4.0/fd-v7.4.0-x86_64-unknown-linux-musl.tar.gz -O fd.tar.gz
+tar xf fd.tar.gz
+cd fd-v7.4.0-x86_64-unknown-linux-musl/
+cp ./fd /usr/bin/
+cp ./fd.1 /usr/share/man/man1/
+
+yum -y install httpie
+
+yum -y install fortune-mod
+
+# install Powerline fonts
+cd /data
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+
+# git log 乱码问题
+echo export LESSCHARSET=utf-8 >> /etc/bashrc
+echo export LESSCHARSET=utf-8 >> /etc/zshrc
+
 
 cd / && rm -rf /data

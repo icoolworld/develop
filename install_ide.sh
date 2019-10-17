@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 mkdir -p /data
 cd /data
 
@@ -11,7 +11,7 @@ cd /data
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 
-# python 语法检查flake8 
+# python 语法检查flake8
 #@see https://gitlab.com/pycqa/flake8
 #@see http://flake8.pycqa.org/en/latest/index.html#quickstart
 python -m pip install flake8
@@ -29,7 +29,7 @@ git clone https://github.com/universal-ctags/ctags.git
 cd ctags/
 ./autogen.sh
 #./configure --prefix=/where/you/want # defaults to /usr/local
-./configure 
+./configure
 make
 make install # may require extra privileges depending on where to install
 
@@ -60,9 +60,6 @@ cd ../
 # 配置vimrc,及安装相关vim插件[代码自动补全,语法检查,查找，目录树，代码注释，区域选择，多行编辑等],打造IDE开发环境
 git clone https://github.com/icoolworld/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-# git log 乱码问题
-echo export LESSCHARSET=utf-8 >> /etc/bashrc
 
 #清理源文件
 rm -rf /data/
