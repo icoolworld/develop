@@ -190,6 +190,8 @@ yum -y install httpie
 
 yum -y install fortune-mod
 
+yum -y install ctags
+
 # install Powerline fonts
 cd /data
 git clone https://github.com/powerline/fonts.git --depth=1
