@@ -1,7 +1,6 @@
 #!/bin/bash
 
-mkdir -p /data/
-cd /data/
+mkdir -p /data/ && cd /data/
 
 yum -y install epel-release
 #yum update
@@ -182,7 +181,7 @@ yum install -y dnf
 # install fd
 cd /data
 wget https://github.com/sharkdp/fd/releases/download/v7.4.0/fd-v7.4.0-x86_64-unknown-linux-musl.tar.gz -O fd.tar.gz
-tar xf fd.tar.gz
+tar zxf fd.tar.gz
 cd fd-v7.4.0-x86_64-unknown-linux-musl/
 cp ./fd /usr/bin/
 cp ./fd.1 /usr/share/man/man1/
@@ -201,5 +200,4 @@ cd fonts
 echo export LESSCHARSET=utf-8 >> /etc/bashrc
 echo export LESSCHARSET=utf-8 >> /etc/zshrc
 
-
-cd / && rm -rf /data
+cd / && rm -rf /data/

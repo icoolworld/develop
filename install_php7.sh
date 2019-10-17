@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p /data/ && cd /data/
 
 #. /etc/init.d/functions
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
@@ -61,7 +62,7 @@ function selectInstallItem(){
         echo "Error: wrong selected" && exit
     ;;
     esac
-    
+
     read -p "Whether to install pcntl.so  (y/n): " i
     case "$i" in
     'y')
@@ -78,7 +79,7 @@ function selectInstallItem(){
 
 function installLibmcrypt()
 {
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     logToFile "|--> download depended packages..."
     if [ ! -f libmcrypt-2.5.8.tar.gz ]; then
         if [ -f ${SOURCEDIR}libmcrypt-2.5.8.tar.gz ]; then
@@ -135,7 +136,7 @@ function installLibmcrypt()
 
 function installRabbitSo()
 {
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f simplejson-2.1.1.tar.gz ]; then
         checkRetval 'download simplejson-2.1.1.tar.gz'
     fi
@@ -169,7 +170,7 @@ function installPhp()
 {
     logToFile "|--> Install PHP"
     yum --enablerepo=epel -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel  ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel libtool  libtool-libs libevent-devel libevent openldap openldap-devel nss_ldap openldap-clients openldap-servers libtool-ltdl libtool-ltdl-devel bison libjpeg* libmcrypt  mhash php-mcrypt >> ${LOGFILE} 2>&1
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f php-${VERSION}.tgz ]; then
         checkRetval 'download php-${VERSION}.tgz'
     fi
@@ -183,7 +184,7 @@ function installPhp()
     fi
     checkRetval 'PHP installation success'
 
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     cp php-fpm.conf /usr/local/php-${VERSION}/etc/php-fpm.conf
     cp php.ini /usr/local/php-${VERSION}/etc/php.ini
     mkdir /usr/local/php-${VERSION}/etc/ext
@@ -197,7 +198,7 @@ function installPhpFromSource()
     logToFile "|--> start yum lib install.."
     yum -y install libxml2 libxml2-devel  bzip2 bzip2-devel curl curl-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel openssl-devel bison libmcrypt libmcrypt-devel mcrypt mhash libtiff-devel libxslt-devel >> ${LOGFILE} 2>&1
     checkRetval 'yum lib install'
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f php-${VERSION}.tar.gz ]; then
         if [ -f ${SOURCEDIR}php-${VERSION}.tar.gz ]; then
             cp ${SOURCEDIR}php-${VERSION}.tar.gz . >> ${LOGFILE} 2>&1
@@ -210,7 +211,7 @@ function installPhpFromSource()
 
     tar zxf php-${VERSION}.tar.gz >> ${LOGFILE} 2>&1
     cd php-${VERSION}
-    ./configure --prefix=/usr/local/php-${VERSION} --with-config-file-path=/usr/local/php-${VERSION}/etc --enable-bcmath --enable-fpm --with-openssl --with-pear=/usr/share/php --enable-ftp --enable-zip --with-bz2 --with-zlib --with-libxml-dir=/usr --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-gettext --with-iconv --enable-mbstring --disable-ipv6 --enable-inline-optimization  --enable-static --enable-sockets --enable-soap --with-mhash --with-pcre-regex --with-mcrypt --with-curl --with-mysql --with-mysqli --with-pdo-mysql 
+    ./configure --prefix=/usr/local/php-${VERSION} --with-config-file-path=/usr/local/php-${VERSION}/etc --enable-bcmath --enable-fpm --with-openssl --with-pear=/usr/share/php --enable-ftp --enable-zip --with-bz2 --with-zlib --with-libxml-dir=/usr --with-gd --enable-gd-native-ttf --with-jpeg-dir --with-png-dir --with-freetype-dir --with-gettext --with-iconv --enable-mbstring --disable-ipv6 --enable-inline-optimization  --enable-static --enable-sockets --enable-soap --with-mhash --with-pcre-regex --with-mcrypt --with-curl --with-mysql --with-mysqli --with-pdo-mysql
     checkRetval "./configure"
     make -j 8
     [ $? -eq 0 ] && make install
@@ -226,18 +227,18 @@ function installPhpFromSource()
     #php-fpm status.html
     #sed -i 's#/status#/php-status#' /home/wwwroot/test.com/php-status.html
     cp sapi/fpm/status.html /usr/local/php-${VERSION}/
-    #cp sapi/fpm/status.html /home/wwwroot/test.com/php-status.html 
+    #cp sapi/fpm/status.html /home/wwwroot/test.com/php-status.html
 
 
     #[ -f ${PHP_CONF_DIR}php-fpm.conf ] && cp -rf ${PHP_CONF_DIR}php-fpm.conf /usr/local/php-${VERSION}/etc/php-fpm.conf >> ${LOGFILE} 2>&1
     #[ -f ${PHP_CONF_DIR}php.ini ]      && cp -rf ${PHP_CONF_DIR}php.ini /usr/local/php-${VERSION}/etc/php.ini >> ${LOGFILE} 2>&1
     #[ -f ${PHP_CONF_DIR}php-fpm ]      && cp -rf ${PHP_CONF_DIR}php-fpm /etc/rc.d/init.d/php-fpm >> ${LOGFILE} 2>&1
-    
+
     cp /usr/local/php-${VERSION}/etc/php-fpm.d/www.conf.default /usr/local/php-${VERSION}/etc/php-fpm.d/www.conf
 
     chmod +x /etc/init.d/php-fpm
     chkconfig php-fpm on
-    
+
 
     WARN=`/usr/local/php-${VERSION}/bin/php -m|grep "PHP Warning"|wc -l`
     if [ $WARN -gt 0 ];then
@@ -255,7 +256,7 @@ function installMemcache()
         return
     fi
     logToFile "|--> Install PHP Extension:Memcache..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f memcache-2.2.7.tgz ]; then
         if [ -f ${SOURCEDIR}memcache-2.2.7.tgz ]; then
             cp ${SOURCEDIR}memcache-2.2.7.tgz . >> ${LOGFILE} 2>&1
@@ -283,7 +284,7 @@ function installMemcached()
         return
     fi
     logToFile "|--> Install PHP Extension:Memcached..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f memcached-3.0.4.tgz ]; then
         if [ -f ${SOURCEDIR}memcached-3.0.4.tgz ]; then
             cp ${SOURCEDIR}memcached-3.0.4.tgz . >> ${LOGFILE} 2>&1
@@ -304,11 +305,11 @@ function installMemcached()
 
 	tar zxf libmemcached-1.0.18.tar.gz >> ${LOGFILE} 2>&1
 	cd libmemcached-1.0.18
-	./configure  
-    make && make install  
-	
+	./configure
+    make && make install
+
 	cd ../
-	
+
     tar zxf memcached-3.0.4.tgz >> ${LOGFILE} 2>&1
     cd memcached-3.0.4
     /usr/local/php-${VERSION}/bin/phpize
@@ -327,7 +328,7 @@ function installYaf()
         return
     fi
     logToFile "|--> Install PHP Extension:Yaf..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f yaf-3.0.5.tgz ]; then
         if [ -f ${SOURCEDIR}yaf-3.0.5.tgz ]; then
             cp ${SOURCEDIR}yaf-3.0.5.tgz . >> ${LOGFILE} 2>&1
@@ -362,7 +363,7 @@ function installRedis()
         return
     fi
     logToFile "|--> Install PHP Extension:Redis..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f redis-3.1.4.tgz ]; then
         if [ -f ${SOURCEDIR}redis-3.1.4.tgz ]; then
             cp ${SOURCEDIR}redis-3.1.4.tgz . >> ${LOGFILE} 2>&1
@@ -420,7 +421,7 @@ function installComposer()
     fi
     chmod +x composer.phar
     cp composer.phar /usr/local/php-${VERSION}/bin/
-    cp composer.phar /usr/bin/composer    
+    cp composer.phar /usr/bin/composer
     composer
     logToFile "|--> End Install composer..."
 }
@@ -432,7 +433,7 @@ function installSwoole()
         return
     fi
     logToFile "|--> Install PHP Extension:Swoole..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f swoole-v1.9.22.tar.gz ]; then
         if [ -f ${SOURCEDIR}swoole-v1.9.22.tar.gz ]; then
             cp ${SOURCEDIR}swoole-v1.9.22.tar.gz . >> ${LOGFILE} 2>&1
@@ -459,7 +460,7 @@ function installMongo()
         return
     fi
     logToFile "|--> Install PHP Extension:Mongo..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f mongodb-1.5.1.tgz ]; then
         if [ -f ${SOURCEDIR}mongodb-1.5.1.tgz ]; then
             cp ${SOURCEDIR}mongodb-1.5.1.tgz . >> ${LOGFILE} 2>&1
@@ -483,7 +484,7 @@ extension=mongodb.so
 function installXdebug()
 {
     logToFile "|--> Install PHP Zend Extension:Xdebug..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f xdebug-2.5.5.tgz ]; then
         if [ -f ${SOURCEDIR}xdebug-2.5.5.tgz ]; then
             cp ${SOURCEDIR}xdebug-2.5.5.tgz . >> ${LOGFILE} 2>&1
@@ -501,7 +502,7 @@ function installXdebug()
     echo '[xdebug]
 zend_extension=xdebug.so
 ;开启xdebug
-xdebug.default_enable = 1 
+xdebug.default_enable = 1
 ;强制显示错误,不管php.ini的display_errors配置是否开启
 xdebug.force_display_errors = 1
 xdebug.force_error_reporting = 1
@@ -546,7 +547,7 @@ xdebug.profiler_enable = 1
 function installPhpcs()
 {
     logToFile "|--> Install phpcs..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f phpcs.phar ]; then
         if [ -f ${SOURCEDIR}phpcs.phar ]; then
             cp ${SOURCEDIR}phpcs.phar . >> ${LOGFILE} 2>&1
@@ -565,7 +566,7 @@ function installPhpcs()
 function installPhpPear()
 {
     logToFile "|--> Install Pear..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f go-pear.phar ]; then
         if [ -f ${SOURCEDIR}go-pear.phar ]; then
             cp ${SOURCEDIR}go-pear.phar . >> ${LOGFILE} 2>&1
@@ -589,7 +590,7 @@ function installOpenssl()
     fi
     logToFile "|--> Install PHP Extension:openssl..."
     cd ${BASEDIR}php-${VERSION}/ext/openssl
-    [ ! -f config.m4 ] && cp config0.m4 config.m4 
+    [ ! -f config.m4 ] && cp config0.m4 config.m4
     /usr/local/php-${VERSION}/bin/phpize
     ./configure --with-openssl --with-php-config=/usr/local/php-${VERSION}/bin/php-config
     make -j 8 && make install
@@ -603,7 +604,7 @@ extension=openssl.so
 function installPhpUnit()
 {
     logToFile "|--> Install PhpUnit..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f phpunit-5.7.phar ]; then
         if [ -f ${SOURCEDIR}phpunit-5.7.phar ]; then
             cp ${SOURCEDIR}phpunit-5.7.phar . >> ${LOGFILE} 2>&1
@@ -651,7 +652,7 @@ extension=pdo_pgsql.so
 function installApcu()
 {
     logToFile "|--> Install PHP Extension:Apcu..."
-    cd ${BASEDIR} 
+    cd ${BASEDIR}
     if [ ! -f apcu-5.1.8.tgz ]; then
         if [ -f ${SOURCEDIR}apcu-5.1.8.tgz ]; then
             cp ${SOURCEDIR}apcu-5.1.8.tgz . >> ${LOGFILE} 2>&1
@@ -698,12 +699,12 @@ function installAmqp()
     #pecl channel-update pecl.php.net
     #pecl install channel://pecl.php.net/amqp-1.9.3
     wget http://pecl.php.net/get/amqp-1.9.3.tgz
-    tar zxf amqp-1.9.3.tgz 
+    tar zxf amqp-1.9.3.tgz
     cd amqp-1.9.3
     /usr/local/php-${VERSION}/bin/phpize
    ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config  --with-amqp --with-librabbitmq-dir=/usr/local
    make -j 8 && make install
-    
+
     echo '[amqp]
 extension=amqp.so
 ' >> /usr/local/php-${VERSION}/etc/php.ini
@@ -772,7 +773,7 @@ function main()
     #--enable-bcmath
     #installBcmath
     installAmqp
-    
+
     service php-fpm start
     #/usr/local/php-${VERSION}/sbin/php-fpm
     #lsof -i:9000 | wc -l
@@ -785,3 +786,4 @@ function main()
 
 main
 
+cd / && rm -rf /data/

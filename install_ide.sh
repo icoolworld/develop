@@ -61,6 +61,5 @@ cd ../
 git clone https://github.com/icoolworld/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-#清理源文件
-rm -rf /data/
+cd / && rm -rf /data/
 
