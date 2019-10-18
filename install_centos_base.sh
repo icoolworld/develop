@@ -67,13 +67,6 @@ make && make install
 ln -s /usr/local/vim8/bin/vim /usr/bin/vim
 ln -s /usr/bin/vim /usr/bin/vi
 
-echo "export TERM=xterm-256color" >> /etc/bashrc
-echo "export LANG=en_US.UTF-8" >> /etc/bashrc
-
-echo "export TERM=xterm-256color" >> /etc/zshrc
-echo "export LANG=en_US.UTF-8" >> /etc/zshrc
-
-
 #./configure --prefix=/usr/local/vim8 \
 #--with-features=huge \
 #--enable-cscope \
@@ -125,8 +118,8 @@ cd /data/
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/bashrc
-echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/zshrc
+touch /etc/profile.d/autojump.sh
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/autojump.sh
 cd ../ && rm -rf autojump
 
 # fix sshd server
@@ -155,7 +148,7 @@ yum -y install bash-completion
 # git autocomplete
 cat <<EOT >>  ~/.bashrc
 for file in /etc/bash_completion.d/* ; do
-    source "$file"
+    source '$file'
 done
 EOT
 
@@ -208,8 +201,10 @@ git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 ./install.sh
 
+touch /etc/profile.d/fix.sh
 # git log 乱码问题
-echo export LESSCHARSET=utf-8 >> /etc/bashrc
-echo export LESSCHARSET=utf-8 >> /etc/zshrc
+echo "export LESSCHARSET=utf-8" >> /etc/profile.d/fix.sh
+echo "export TERM=xterm-256color" >> /etc/profile.d/fix.sh
+echo "export LANG=en_US.UTF-8" >> /etc/profile.d/fix.sh
 
 cd / && rm -rf /data/
