@@ -3,7 +3,6 @@
 mkdir -p /data
 cd /data
 
-
 # 安装ctags
 
 #git clone https://github.com/universal-ctags/ctags.git
