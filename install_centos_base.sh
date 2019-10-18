@@ -2,13 +2,23 @@
 
 mkdir -p /data/ && cd /data/
 
+
+yum -y install wget
+
+# replace repo to aliyun
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+yum clean all
+#yum makecache
+
 yum -y install epel-release
 #yum update
 yum -y install bash zsh
 
 # centos初始化一些环境，安装一些基础的类库等
-yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-devel;
-yum -y install libtool automake autoconf install gcc-c++;
+yum -y install curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-devel;
+yum -y install libtool automake autoconf gcc-c++;
 yum -y install libxml2-devel zlib-devel bzip2 bzip2-devel;
 yum -y install ncurses-devel readline-devel;
 yum -y remove vim vim-enhanced vim-common vim-minimal vim-filesystem;
@@ -80,7 +90,7 @@ echo "export LANG=en_US.UTF-8" >> /etc/zshrc
 #
 
 ## install develope tools
-yum group install "Development Tools"
+yum group install -y "Development Tools"
 
 # ag..
 yum -y install the_silver_searcher
