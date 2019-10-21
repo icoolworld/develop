@@ -117,7 +117,7 @@ git config --global core.quotepath false
 cd /data/
 git clone https://github.com/wting/autojump.git
 cd autojump && ./install.py
-echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/profile
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 cd ../ && rm -rf autojump
 
 # fix sshd server
