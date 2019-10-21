@@ -11,11 +11,11 @@ echo "export GOROOT=/usr/local/go" >> /etc/profile.d/golang.sh
 echo "export GOPATH=/root/go" >> /etc/profile.d/golang.sh
 echo "export GO111MODULE=on" >> /etc/profile.d/golang.sh
 #echo "export GOPROXY=https://mirrors.aliyun.com/goproxy/" >> /etc/profile.d/golang.sh
-echo "export GOPROXY=https://goproxy.cn" >> /etc/profile.d/golang.sh
+#echo "export GOPROXY=https://goproxy.cn" >> /etc/profile.d/golang.sh
 
 echo 'export PATH=/usr/local/go/bin/:$PATH' >> /etc/profile
 echo 'export PATH=/root/go/bin/:$PATH' >> /etc/profile
-
-#go env -w GOPROXY=https://goproxy.cn,direct
+source /etc/profile
+go env -w GOPROXY=https://goproxy.cn,direct
 
 cd / && rm -rf /data/
