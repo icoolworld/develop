@@ -69,25 +69,25 @@ ZSH_THEME="ys"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    alias-finder
-    autopep8
-    codeclimate
+    #alias-finder
+    #autopep8
+    #codeclimate
+    #autojump
+    #common-aliases
+    #colorize
+    #composer
+    #dirhistory
+    #dnf
+    #docker-compose
+    #docker
+    #emoji-clock
+    #emoji
+    #extract
+    #fd
+    #golang
+    #httpie
+    #redis-cli
     git
-    autojump
-    common-aliases
-    colorize
-    composer
-    dirhistory
-    dnf
-    docker-compose
-    docker
-    emoji-clock
-    emoji
-    extract
-    fd
-    golang
-    httpie
-    redis-cli
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-completions
