@@ -9,5 +9,6 @@ cd node-v10.16.3-linux-x64/
 #avaScript 代码规范，自带 linter & 代码自动修正
 npm install --global standard
 npm install --global prettier
+npm install --global eslint
 
 cd / && rm -rf /data/
