@@ -116,10 +116,8 @@ git config --global core.quotepath false
 # autojump command
 cd /data/
 git clone https://github.com/wting/autojump.git
-cd autojump
-./install.py
-touch /etc/profile.d/autojump.sh
-echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/autojump.sh
+cd autojump && ./install.py
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh" >> /etc/profile
 cd ../ && rm -rf autojump
 
 # fix sshd server
@@ -148,7 +146,7 @@ yum -y install bash-completion
 # git autocomplete
 cat <<EOT >>  ~/.bashrc
 for file in /etc/bash_completion.d/* ; do
-    source '$file'
+    source "\$file"
 done
 EOT
 
