@@ -23,5 +23,8 @@ cd /data
 git clone https://github.com/icoolworld/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-cd / && rm -rf /data/
+# vim-go init
+vim -c ":GoInstallBinaries"
+go env -w GOPROXY=https://goproxy.cn,direct
 
+cd / && rm -rf /data/
