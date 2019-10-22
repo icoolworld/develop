@@ -2,6 +2,7 @@
 
 mkdir -p /data
 cd /data
+source /etc/profile
 
 # 安装ctags
 
