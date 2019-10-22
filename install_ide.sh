@@ -4,6 +4,23 @@ mkdir -p /data
 cd /data
 source /etc/profile
 
+
+# install synatx checker
+npm install -g csslint
+npm install -g htmlhint
+npm config set unsafe-perm=true
+npm install -g fecs
+npm install -g stylelint
+npm install -g stylelint-config-standard
+npm install -g markdownlint
+npm install -g markdownlint-cli
+npm install -g alex
+#gem install mdl
+npm install -g jsonlint
+pip install -g yamllint
+npm install -g write-good
+npm install -g textlint
+
 # 安装ctags
 
 #git clone https://github.com/universal-ctags/ctags.git
@@ -25,7 +42,7 @@ git clone https://github.com/icoolworld/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 # vim-go init
-vim -c ":GoInstallBinaries"
+#vim -c ":GoInstallBinaries"
 go env -w GOPROXY=https://goproxy.cn,direct
 
 cd / && rm -rf /data/
