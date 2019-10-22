@@ -16,4 +16,10 @@ pip install pycodestyle
 pip install yapf
 pip install futures
 
+# install python3
+yum install centos-release-scl
+yum install rh-python36
+#scl enable rh-python36 bash
+ln -s /opt/rh/rh-python36/root/usr/bin/python /usr/bin/python3
+
 cd / && rm -rf /data/
