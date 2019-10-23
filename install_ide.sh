@@ -17,7 +17,7 @@ npm install -g markdownlint-cli
 npm install -g alex
 #gem install mdl
 npm install -g jsonlint
-pip install -g yamllint
+pip install yamllint
 npm install -g write-good
 npm install -g textlint
 
