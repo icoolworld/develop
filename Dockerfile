@@ -13,7 +13,7 @@ RUN /build/install_python.sh
 RUN /build/install_tools.sh
 RUN /build/install_vim.sh
 RUN /build/install_ide.sh
+RUN /build/replace_repo.sh
 RUN /build/install_zsh.sh
 RUN /build/clear.sh
 WORKDIR /
-

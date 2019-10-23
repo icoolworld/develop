@@ -5,13 +5,6 @@ mkdir -p /data/ && cd /data/
 
 yum -y install wget
 
-# replace repo to aliyun
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
-yum clean all
-#yum makecache
-
 yum -y install epel-release
 #yum update
 yum -y install bash zsh
