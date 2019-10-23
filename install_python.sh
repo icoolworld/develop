@@ -18,6 +18,7 @@ pip install futures
 
 # install python3
 yum -y install python36
+yum -y install python3-devel
 
 #yum -y install centos-release-scl
 #yum install rh-python36

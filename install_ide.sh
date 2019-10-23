@@ -21,6 +21,10 @@ pip install yamllint
 npm install -g write-good
 npm install -g textlint
 
+
+# vim  auto compolete required
+pip3 install --user pynvim
+
 # 安装ctags
 
 #git clone https://github.com/universal-ctags/ctags.git
