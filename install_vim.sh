@@ -24,6 +24,8 @@ cd vim/src/
 --enable-cscope \
 --enable-fail-if-missing
 
+make && make install
+
 ln -s /usr/local/vim8/bin/vim /usr/bin/vim
 ln -s /usr/bin/vim /usr/bin/vi
 

@@ -11,6 +11,5 @@ sh ~/.vim_runtime/install_custom_vimrc.sh
 
 # vim-go init
 #vim -c ":GoInstallBinaries"
-go env -w GOPROXY=https://goproxy.cn,direct
 
 cd / && rm -rf /data/
