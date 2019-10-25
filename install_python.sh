@@ -9,6 +9,7 @@ python get-pip.py
 #@see https://gitlab.com/pycqa/flake8
 #@see http://flake8.pycqa.org/en/latest/index.html#quickstart
 pip install flake8
+pip install pylint
 
 # code sytle
 pip install --upgrade autopep8
