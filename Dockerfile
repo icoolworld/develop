@@ -10,6 +10,7 @@ RUN /build/install_php7.sh
 RUN /build/install_golang.sh
 RUN /build/install_node.sh
 RUN /build/install_python.sh
+RUN /build/install_java.sh
 RUN /build/install_tools.sh
 RUN /build/install_vim.sh
 RUN /build/install_ide.sh
