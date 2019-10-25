@@ -17,7 +17,7 @@ npm install --global prettier
 npm install --global eslint
 
 # install yarn
-curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-yum install -y yarn
+curl -o- -L https://yarnpkg.com/install.sh | bash
+echo 'export PATH=/root/.yarn/bin/:$PATH' >> /etc/profile
 
 cd / && rm -rf /data/
