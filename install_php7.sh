@@ -730,15 +730,6 @@ function installPhpcsfixer()
     mv php-cs-fixer /usr/bin/php-cs-fixer
 }
 
-function installPhpctags()
-{
-    cd ${BASEDIR}
-    curl -Ss http://vim-php.com/phpctags/install/phpctags.phar > phpctags
-    chmod a+x phpctags
-    mv phpctags /usr/bin/phpctags
-
-}
-
 function main()
 {
     pkill php-fpm
@@ -768,7 +759,6 @@ function main()
         installPhpPear
         installComposer
         installPhpcsfixer
-        installPhpctags
     fi
     #--enable-bcmath
     #installBcmath
