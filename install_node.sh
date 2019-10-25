@@ -8,6 +8,9 @@ tar xf node-v12.13.0-linux-x64.tar.xz
 cd node-v12.13.0-linux-x64/
 \cp -r bin/ include/ lib/ share/ /usr/
 
+node -v
+npm -v
+
 #avaScript 代码规范，自带 linter & 代码自动修正
 npm install --global standard
 npm install --global prettier
