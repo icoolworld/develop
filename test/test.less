@@ -1,0 +1,15 @@
+@width: 10px;
+@height: @width + 10px;
+
+#header {
+  width: @width;
+  height: @height;
+  font-size: 15px;
+}
+
+@media (min-width >= 60em) {
+  .selector {
+    /* Flush to parent comment */
+    transform: translate(1, 1) scale(3);
+  }
+}

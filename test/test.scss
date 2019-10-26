@@ -1,0 +1,14 @@
+$highlight-color: #f90;
+
+.selected {
+  border: 1px solid $highlight-color;
+  font-size: 12px;
+}
+
+@media (min-width >= 60em) {
+  .selector {
+    font-size: 12px;
+    /* Flush to parent comment */
+    transform: translate(1, 1) scale(3);
+  }
+}

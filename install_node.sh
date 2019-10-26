@@ -11,11 +11,6 @@ cd node-v12.13.0-linux-x64/
 node -v
 npm -v
 
-#avaScript 代码规范，自带 linter & 代码自动修正
-npm install --global standard
-npm install --global prettier
-npm install --global eslint
-
 # install yarn
 curl -o- -L https://yarnpkg.com/install.sh | bash
 echo 'export PATH=/root/.yarn/bin/:$PATH' >> /etc/profile

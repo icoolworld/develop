@@ -1,0 +1,7 @@
+@import "other.wxss";
+
+.content_text:{
+
+    margin:15px;
+
+}
