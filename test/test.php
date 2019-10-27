@@ -25,5 +25,7 @@ class Site
         $arr1 = [];
         $arr2 = [];
         $arr3 = array_merge($arr1, $arr2);
+        $this->getTitle();
+        $this->getTitle();
     }
 }
