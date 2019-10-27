@@ -5,6 +5,7 @@ public class Penguin {
         name = myName;
         id = myid;
     }
+    test
     public void eat(){
         System.out.println(name+"正在吃");
     }

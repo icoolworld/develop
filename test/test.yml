@@ -11,3 +11,6 @@ go:
 
 go_import_path: gopkg.in/yaml.v2
 version: 1.2
+ok:
+  - aasd
+ aasd:xxx
