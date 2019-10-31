@@ -11,9 +11,9 @@ yum -y install redis
 yum -y install pspg
 
 # another mysql client
-pip install -U mycli
+pip3 install -U mycli
 
 # another pgsql client
-pip install -U pgcli
+pip3 install -U pgcli
 
 cd / && rm -rf /data/
