@@ -4,8 +4,8 @@ public class Penguin {
     public Penguin(String myName, int  myid) {
         name = myName;
         id = myid;
+        name = "1234"
     }
-    test
     public void eat(){
         System.out.println(name+"正在吃");
     }

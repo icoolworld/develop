@@ -1,4 +1,3 @@
 #!/usr/bin/bash
-
-a = ok
-b = 33
+a=2
+b=$a

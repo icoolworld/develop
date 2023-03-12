@@ -6,3 +6,4 @@ console.log(myName); // Tom
 console.log(myClass.a); // yeah!
 alert("ok");
 console.log(sasd);
+alert(===)

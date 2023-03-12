@@ -13,8 +13,9 @@ yum clean all
 
 # replace repo
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-npm --registry https://registry.npm.taobao.org info underscore -g
-yarn config set registry https://registry.npm.taobao.org -g
+npm --registry https://registry.npmmirror.com info underscore -g
+yarn config set registry https://registry.npmmirror.com -g
+pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 mkdir -p ~/.config/pip/
 touch ~/.config/pip/pip.conf
 echo '[global]
